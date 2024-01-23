@@ -1,0 +1,22 @@
+﻿@page "/nav"
+@page "/nav1"
+@rendermode InteractiveServer
+@inject NavigationManager NavMan
+<h3>Url ist gerade @NavMan.Uri</h3>
+<ul>
+    <li><a href="/nav">nav1</a></li>
+    <li><a href="/nav1">navB</a></li>
+    <li><a href="/nav1?id=4344">navB</a></li>
+</ul>
+<button @onclick="click">nav Event abonnieren</button>
+@code {
+    void click()
+    {
+        NavMan.LocationChanged += Huch;
+
+    }
+    void Huch(object? sender, LocationChangedEventArgs args)
+    {
+        StateHasChanged();
+    }
+}
