@@ -1,0 +1,21 @@
+﻿@page "/attr"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Authorization
+@* @attribute [Authorize] *@
+<h3>Attr</h3>
+<button @onclick="click" >click</button>
+<div onclick="click">
+    text
+</div>
+<input @bind="Eingabe"/> 
+@Eingabe<br />
+<input @bind="Eingabe" @ref="eingabe2"/>
+
+@code {
+    string Eingabe;
+    ElementReference eingabe2;
+    void click( MouseEventArgs args)
+    {
+        eingabe2.FocusAsync();
+    }
+}
