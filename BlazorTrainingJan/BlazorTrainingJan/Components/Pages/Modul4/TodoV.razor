@@ -1,0 +1,46 @@
+﻿@page "/todov"
+@inject IHttpClientFactory client
+<h3>ToDoPage</h3>
+<div class="container">
+  
+    <div class="row">
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item ">Todos</li>
+                @if (Liste == null)
+                {
+                    <li class="list-group-item">lade...</li>
+                }
+                else
+                {
+                   
+                    <Virtualize Items="Liste" Context="item" ItemSize="24" OverscanCount="3" >
+                        <ItemContent>
+                                <li class="list-group-item">
+                                    @item.todo
+
+                                </li>
+                        </ItemContent>
+                        <EmptyContent></EmptyContent>
+                    </Virtualize>
+                  
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code {
+    List<Todo> Liste;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using (var http = client.CreateClient())
+        {
+            var t = await http.GetFromJsonAsync<TodoModel>("https://dummyjson.com/todos");
+            Liste = t.todos.ToList<Todo>();
+        }
+    }
+    void suche()
+    { }
+}
