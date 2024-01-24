@@ -1,5 +1,6 @@
 using BlazorTrainingJan.Client.Pages;
 using BlazorTrainingJan.Components;
+using BlazorTrainingJan.Components.Pages.Modul4;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
    .AddInteractiveWebAssemblyComponents();
 builder.Services.AddHttpClient();
+builder.Services.AddSingleton<ChatVM>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
