@@ -22,14 +22,16 @@
         PLS.SetAsync("hannes", Eingabe);
 
     }
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        var ret=await PLS.GetAsync<string>("hannes");  
+        var ret = await PLS.GetAsync<string>("hannes");
         if (ret.Success)
         {
             Eingabe = ret.Value;
-            StateHasChanged();
+          //  StateHasChanged();
         }
-
     }
+
+
+   
 }
