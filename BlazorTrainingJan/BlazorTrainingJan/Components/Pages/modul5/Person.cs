@@ -12,6 +12,6 @@ namespace BlazorTrainingJan.Components.Pages.modul5
         public int Gross { get; set; }
 
         [Required(ErrorMessage = "bitte füllen")]
-        public DateTime GebDate { get; set; }
+        public DateTime? GebDate { get; set; }
     }
 }

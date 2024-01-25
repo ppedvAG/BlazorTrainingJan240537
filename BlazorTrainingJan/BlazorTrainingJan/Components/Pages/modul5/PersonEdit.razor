@@ -1,6 +1,6 @@
 ﻿@page "/person"
 <h3>PersonEdit</h3>
-<EditForm Model="VM" OnSubmit="save" >
+<EditForm EditContext="ctx" OnSubmit="save" >
     <DataAnnotationsValidator></DataAnnotationsValidator>
     <div class="mb-3 row">
         <label class="col-sm-2 col-form-label">Name</label>
@@ -31,8 +31,14 @@
     <ValidationSummary></ValidationSummary>
 </EditForm>
 @code {
+    EditContext ctx;
     Person VM = new Person();
-    void save()
+    protected override void OnInitialized()
+    {
+        ctx = new EditContext(VM);
+        ctx.SetFieldCssClassProvider(new BooststrapFixFieldClassCSSprovider());
+    }
+    void save(EditContext ctx)
     {
         
     }
