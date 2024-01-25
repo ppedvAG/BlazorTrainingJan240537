@@ -1,0 +1,33 @@
+﻿<h3 @attributes="MyAttributes">Component @MyProperty</h3>
+<hr />
+@StringProperty
+<hr />
+@* @ChildContent *@
+@if (true)
+{
+    @EmptyContent
+}
+else
+{
+    @ItemContent
+}
+
+@code {
+    [Parameter]
+    public int MyProperty { get; set; }
+    [Parameter]
+    [EditorRequired]
+    public string StringProperty { get; set; }
+    [Parameter(CaptureUnmatchedValues =true)]
+    public Dictionary<string,object> MyAttributes { get; set; }
+    [CascadingParameter]
+    public int Cascading1 { get; set; }
+    [CascadingParameter]
+    public string Cascading2 { get; set; }
+    // [Parameter]
+    // public RenderFragment ChildContent { get; set; }
+    [Parameter]
+     public RenderFragment EmptyContent { get; set; }
+    [Parameter]
+    public RenderFragment ItemContent { get; set; }
+}

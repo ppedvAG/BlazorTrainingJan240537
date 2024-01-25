@@ -1,0 +1,16 @@
+﻿@page "/comp"
+<h3>UseComponent</h3>
+<CascadingValue Value="@("hannesp@ppedv.de")">
+    <CascadingValue Value="42">
+        <Component MyProperty="42" @ref="compi" StringProperty="@hannes"
+                   width="50%" data-hannes="sepp">
+          @*   <p>html code</p> *@
+          <ItemContent>huraaa Daten</ItemContent>
+          <EmptyContent>da ist nichts</EmptyContent>
+        </Component>
+    </CascadingValue>
+</CascadingValue>
+@code {
+    Component compi;
+    string hannes = "hannes";
+}
