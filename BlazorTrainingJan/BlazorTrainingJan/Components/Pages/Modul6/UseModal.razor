@@ -1,0 +1,25 @@
+﻿@page "/modal"
+<h3>UseModal</h3>
+<ModalPPEDV @ref="modal1" Title="Bitte eingeben" OnSave="save" FocusElement="input1">
+    <div>
+        <input class="form-control" @bind="Eingabe" @ref="input1"/>
+    </div>
+
+</ModalPPEDV>
+
+<button @onclick="open" class="btn btn-outline-primary">openmodal</button>
+@code {
+    ModalPPEDV modal1;
+    ElementReference input1;
+    string Eingabe;
+    void open()
+    {
+        modal1.Show();
+
+    }
+    void save()
+    {
+        Eingabe = "";
+        modal1.Show();
+    }
+}
