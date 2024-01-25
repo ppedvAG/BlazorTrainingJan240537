@@ -1,0 +1,21 @@
+﻿@page "/js"
+@inject IJSRuntime JSRuntime
+<h3>JS</h3>
+
+<button @onclick='alert'>click</button>
+<button @onclick='SetTitel'>titel</button>
+@result
+@code {
+    string result;
+    async Task alert()
+    {
+        JSRuntime.InvokeVoidAsync("alert", "hallo welt");
+        result=await  JSRuntime.InvokeAsync<string>("prompt", "gibs mit");
+    }
+    async Task SetTitel()
+    {
+        //document.title = "Hallo"
+        var modul = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./components/pages/modul8/js.razor.js");
+        modul.InvokeVoidAsync("settitle", "Hallo JS");
+    }
+}
