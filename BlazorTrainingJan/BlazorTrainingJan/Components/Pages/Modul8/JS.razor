@@ -1,9 +1,11 @@
 ﻿@page "/js"
+@using RazorClassLibrary1
 @inject IJSRuntime JSRuntime
 <h3>JS</h3>
 
 <button @onclick='alert'>click</button>
 <button @onclick='SetTitel'>titel</button>
+<button @onclick='Prompt'>Prompt</button>
 @result
 @code {
     string result;
@@ -11,11 +13,20 @@
     {
         JSRuntime.InvokeVoidAsync("alert", "hallo welt");
         result=await  JSRuntime.InvokeAsync<string>("prompt", "gibs mit");
+        JSRuntime.InvokeVoidAsync("localStorage.setItem", "hannes", "Wert");
     }
     async Task SetTitel()
     {
         //document.title = "Hallo"
         var modul = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./components/pages/modul8/js.razor.js");
         modul.InvokeVoidAsync("settitle", "Hallo JS");
+
+
+    }
+    async Task Prompt()
+    {
+        var lib = new ExampleJsInterop(JSRuntime);
+       result= await lib.Prompt("Hallo Welt");
+
     }
 }
